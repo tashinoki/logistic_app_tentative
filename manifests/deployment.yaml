@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: csv-parser
+  labels:
+    app: csv-parser
+spec:
+  containers:
+    - name: csv-parser
+      image: gcr.io/google-samples/hello-app:1.0
+      ports:
+        - containerPort: 80
