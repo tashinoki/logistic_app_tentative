@@ -1,12 +1,36 @@
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: csv-parser
   labels:
     app: csv-parser
 spec:
-  containers:
-    - name: csv-parser
-      image: gcr.io/google-samples/hello-app:1.0
-      ports:
-        - containerPort: 80
+  strategy:
+    ## ローリングアップデートを行う
+    ## 他には、Recreate戦略がある
+    ## https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy
+    # https://github.com/kubernetes/kubernetes/blob/0d9dccfc6bc22f2370650cf5b8ad99cbba74ea23/staging/src/k8s.io/api/apps/v1/types.go#L429-L441
+    type: RollingUpdate
+    rollingUpdate:
+      
+      ## ローリングアップデートの際に、利用できなくなってもよい Pod の数/割合
+      ## 大きいほどアップデートにかかる時間は減るが、同時にエラーを返すリスクも高くなる
+      ## https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#max-unavailable
+      maxUnavailable: 1
+
+      ## ローリングアップデート中に、desired replica count を超えて起動してもよい Pod の数/割合
+      ## 大きいほどダウンタイムのリスクは減るが、リソースを多く消費してしまう
+      ## https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#max-surge
+      maxSurge: 1
+  
+  ## desired replica count を指定する
+  ## 0にすると、Podが起動しない
+  ## hhttps://kubernetes.io/docs/concepts/workloads/controllers/deployment/#replicas
+  replicas: 0
+  template:
+    spec:
+      containers:
+        - name: csv-parser
+          image: gcr.io/google-samples/hello-app:1.0
+          ports:
+            - containerPort: 80
