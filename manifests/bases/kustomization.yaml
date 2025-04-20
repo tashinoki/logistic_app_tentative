@@ -6,3 +6,4 @@ resources:
 - hpa.yaml
 - service.yaml
 - httpRoute.yaml
+- gateway.yaml

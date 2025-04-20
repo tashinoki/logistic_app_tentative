@@ -1,0 +1,18 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: csv-parser-gateway
+spec:
+  # GKE環境で利用可能な外部HTTPSロードバランサー用のGatewayClassを指定
+  # 利用可能なGatewayClass名は `kubectl get gatewayclass` で確認
+  gatewayClassName: gke-managed-global-external-managed-lb # 例：グローバル外部HTTPS LB
+  listeners:
+  - name: https-listener # リスナー名
+    protocol: HTTPS
+    port: 443 # HTTPS標準ポート
+    hostname: "your.pubsub.endpoint.hostname" # Pub/SubがPOSTする際のホスト名 (例: pubsub.your-domain.com)
+    tls:
+      mode: Terminate # GatewayでTLSを終端
+      certificateRefs:
+      - kind: Secret # または 'io.k8s.sigs.gateway-api/ManagedCertificate' (GKE Managed Certs利用時)
+        name: pubsub-receiver-tls-secret # 上記で作成したTLS Secretの名前
