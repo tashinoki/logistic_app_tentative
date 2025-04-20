@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: csv-parser-service
+spec:
+  selector:
+    app: csv-parser
+  ports:
+  - name: http-receiver # 任意のポート名
+    protocol: TCP
+
+    # Serviceの仮想ポート (HTTPRouteで参照)
+    port: 80
+    
+    # Podがリッスンしているポート (Deploymentで定義)
+    targetPort: 80
+  
+  # クラスター内部からのみアクセス可能なServiceタイプ
+  type: ClusterIP
