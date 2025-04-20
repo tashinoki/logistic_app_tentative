@@ -1,0 +1,22 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: csv-parser-route
+spec:
+  parentRefs:
+  - kind: Gateway
+    name: csv-parser-gateway # トラフィックを受け付けるGatewayの名前を指定
+  hostnames:
+  # Gatewayリスナーのホスト名と一致させる
+  - "your.pubsub.endpoint.hostname"
+  rules:
+  - matches:
+    - path:
+        type: Exact # または Prefix
+        value: /pubsub/push # Pub/Sub Push Subscriptionで設定するパス
+        methods:
+        - POST
+    backendRefs:
+    - name: csv-parser-service
+      kind: Service
+      port: 80
