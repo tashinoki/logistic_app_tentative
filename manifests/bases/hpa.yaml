@@ -1,0 +1,15 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: csv-parser
+spec:
+  minReplicas: 0
+  maxReplicas: 1
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        # PodのCPU使用率が平均50%を超えたらスケールアウト
+        averageUtilization: 50 
