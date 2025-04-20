@@ -1,0 +1,9 @@
+# Terraform files
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+override.tf
+override.tf.json
+*.tfvars # 個人学習ならtfvarsをgitignoreしない場合もあるが、機密情報を書くなら必須
+!*.tfvars.example # 例外としてexampleは含める場合
