@@ -12,7 +12,7 @@ terraform {
 provider "google" {
 #   credentials = file(var.credentials_file)
 # 環境変数GOOGLE_APPLICATION_CREDENTIALSを指定
-  credentials = GOOGLE_APPLICATION_CREDENTIALS
+  # credentials = GOOGLE_APPLICATION_CREDENTIALS
   project     = var.project_id
   region      = var.region
 }
