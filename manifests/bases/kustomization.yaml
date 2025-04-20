@@ -4,3 +4,6 @@ kind: Kustomization
 resources:
 - deployment.yaml
 - hpa.yaml
+- service.yaml
+- httpRoute.yaml
+- gateway.yaml
