@@ -2,6 +2,10 @@ apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: csv-parser
+
+## HPA Controller は Desired Replica Count を変更し、
+## 新しい値を Deployment Controller に伝え Pod の数を調整している
+## https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#autoscaling-during-rolling-update
 spec:
   minReplicas: 0
   maxReplicas: 1
