@@ -32,7 +32,15 @@ func main() {
 	http.HandleFunc("/api/v1/health", healthSendMessage)
 	http.HandleFunc("/api/v1/subscribe", subscribeHandler)
 
-	http.ListenAndServe(":8080", nil)
+	port := "8080"
+
+	log.Printf("Starting server on port %s", port)
+
+	err := http.ListenAndServe(":"+port, nil)
+
+	if err != nil {
+		log.Fatalf("Failed to start server: %v", err)
+	}
 }
 
 func healthSendMessage(w http.ResponseWriter, r *http.Request) {
