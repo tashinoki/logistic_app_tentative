@@ -7,6 +7,11 @@ metadata:
 ## 新しい値を Deployment Controller に伝え Pod の数を調整している
 ## https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#autoscaling-during-rolling-update
 spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: csv-parser
+
   ## HPAScaleToZero (alpha feature)が有効なときのみ指定可能
   ## https://github.com/kubernetes/kubernetes/blob/549a6a6c58b5926e736890a2548c5ef7bc6fc901/pkg/apis/autoscaling/types.go#L82-L88
   minReplicas: 1
