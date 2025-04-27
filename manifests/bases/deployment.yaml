@@ -27,7 +27,16 @@ spec:
   ## 0にすると、Podが起動しない
   ## hhttps://kubernetes.io/docs/concepts/workloads/controllers/deployment/#replicas
   replicas: 0
+
+  ## Deployement が扱う Pod の情報を指定する
+  selector:
+    matchLabels:
+      app: csv-parser
+
   template:
+    metadata:
+      labels:
+        app: csv-parser
     spec:
       containers:
         - name: csv-parser
