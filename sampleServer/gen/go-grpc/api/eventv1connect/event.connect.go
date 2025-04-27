@@ -7,8 +7,10 @@ package eventv1connect
 import (
 	context "context"
 	errors "errors"
+	eventv1 "sampleServer/gen/go/api"
+
 	connect_go "github.com/bufbuild/connect-go"
-	v1 "sampleServer/gen/go/api"
+
 	http "net/http"
 	strings "strings"
 )
@@ -40,7 +42,7 @@ const (
 
 // EventServiceClient is a client for the event.v1.EventService service.
 type EventServiceClient interface {
-	ReceiveEvent(context.Context, *connect_go.Request[v1.ReceiveEventRequest]) (*connect_go.Response[v1.ReceiveEventResponse], error)
+	ReceiveEvent(context.Context, *connect_go.Request[eventv1.ReceiveEventRequest]) (*connect_go.Response[eventv1.ReceiveEventResponse], error)
 }
 
 // NewEventServiceClient constructs a client for the event.v1.EventService service. By default, it
@@ -53,7 +55,7 @@ type EventServiceClient interface {
 func NewEventServiceClient(httpClient connect_go.HTTPClient, baseURL string, opts ...connect_go.ClientOption) EventServiceClient {
 	baseURL = strings.TrimRight(baseURL, "/")
 	return &eventServiceClient{
-		receiveEvent: connect_go.NewClient[v1.ReceiveEventRequest, v1.ReceiveEventResponse](
+		receiveEvent: connect_go.NewClient[eventv1.ReceiveEventRequest, eventv1.ReceiveEventResponse](
 			httpClient,
 			baseURL+EventServiceReceiveEventProcedure,
 			opts...,
@@ -63,17 +65,17 @@ func NewEventServiceClient(httpClient connect_go.HTTPClient, baseURL string, opt
 
 // eventServiceClient implements EventServiceClient.
 type eventServiceClient struct {
-	receiveEvent *connect_go.Client[v1.ReceiveEventRequest, v1.ReceiveEventResponse]
+	receiveEvent *connect_go.Client[eventv1.ReceiveEventRequest, eventv1.ReceiveEventResponse]
 }
 
 // ReceiveEvent calls event.v1.EventService.ReceiveEvent.
-func (c *eventServiceClient) ReceiveEvent(ctx context.Context, req *connect_go.Request[v1.ReceiveEventRequest]) (*connect_go.Response[v1.ReceiveEventResponse], error) {
+func (c *eventServiceClient) ReceiveEvent(ctx context.Context, req *connect_go.Request[eventv1.ReceiveEventRequest]) (*connect_go.Response[eventv1.ReceiveEventResponse], error) {
 	return c.receiveEvent.CallUnary(ctx, req)
 }
 
 // EventServiceHandler is an implementation of the event.v1.EventService service.
 type EventServiceHandler interface {
-	ReceiveEvent(context.Context, *connect_go.Request[v1.ReceiveEventRequest]) (*connect_go.Response[v1.ReceiveEventResponse], error)
+	ReceiveEvent(context.Context, *connect_go.Request[eventv1.ReceiveEventRequest]) (*connect_go.Response[eventv1.ReceiveEventResponse], error)
 }
 
 // NewEventServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -100,6 +102,6 @@ func NewEventServiceHandler(svc EventServiceHandler, opts ...connect_go.HandlerO
 // UnimplementedEventServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedEventServiceHandler struct{}
 
-func (UnimplementedEventServiceHandler) ReceiveEvent(context.Context, *connect_go.Request[v1.ReceiveEventRequest]) (*connect_go.Response[v1.ReceiveEventResponse], error) {
+func (UnimplementedEventServiceHandler) ReceiveEvent(context.Context, *connect_go.Request[eventv1.ReceiveEventRequest]) (*connect_go.Response[eventv1.ReceiveEventResponse], error) {
 	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("event.v1.EventService.ReceiveEvent is not implemented"))
 }
