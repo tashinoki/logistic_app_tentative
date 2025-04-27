@@ -26,7 +26,7 @@ spec:
   ## desired replica count を指定する
   ## 0にすると、Podが起動しない
   ## hhttps://kubernetes.io/docs/concepts/workloads/controllers/deployment/#replicas
-  replicas: 0
+  replicas: 1
 
   ## Deployement が扱う Pod の情報を指定する
   selector:
@@ -38,6 +38,7 @@ spec:
       labels:
         app: csv-parser
     spec:
+      serviceAccountName: csv-parser
       containers:
         - name: csv-parser
           image: gcr.io/google-samples/hello-app:1.0
