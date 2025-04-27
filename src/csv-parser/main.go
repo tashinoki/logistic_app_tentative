@@ -59,6 +59,6 @@ func main() {
 		log.Printf("メッセージが正常に送信されました。Message ID: %s\n", msgID)
 	})
 
-	log.Println("サーバーを起動中... ポート80で待機中")
-	http.ListenAndServe(":80", nil)
+	log.Println("サーバーを起動中... ポート8080で待機中")
+	http.ListenAndServe(":8080", nil)
 }
