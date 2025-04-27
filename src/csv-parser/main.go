@@ -40,16 +40,16 @@ func publishMessage(projectID, topicID, msg string) (string, error) {
 func main() {
 	projectID := os.Getenv("GCP_PROJECT_ID")
 	topicID := os.Getenv("GCP_PUBSUB_TOPIC_ID")
-	message := fmt.Sprintf("Hello from Go! Sent at %s", time.Now().Format(time.RFC3339))
 
 	if projectID == "" {
 		log.Fatal("エラー: Google Cloud プロジェクトIDを 'your-gcp-project-id' から実際の値に設定してください。")
 	}
 
 	log.Printf("プロジェクト '%s' のトピック '%s' にメッセージを送信します...", projectID, topicID)
-	log.Printf("メッセージ内容: %s", message)
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+
+		message := fmt.Sprintf("Hello from Go! Sent at %s", time.Now().Format(time.RFC3339))
 		msgID, err := publishMessage(projectID, topicID, message)
 		if err != nil {
 			log.Fatalf("メッセージの送信に失敗しました: %v", err)
