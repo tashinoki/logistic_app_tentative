@@ -14,8 +14,7 @@ spec:
     - path:
         type: Exact # または Prefix
         value: /pubsub/push # Pub/Sub Push Subscriptionで設定するパス
-        methods:
-        - POST
+      method: POST
     backendRefs:
     - name: csv-parser-service
       kind: Service
