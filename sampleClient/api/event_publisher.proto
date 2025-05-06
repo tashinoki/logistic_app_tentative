@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package event.v1;
+
+option go_package = "proto/go/api;eventv1";
+
+service EventPublisherService {
+  rpc PublishEvent (PublishEventRequest) returns (PublishEventResponse);
+}
+
+message PublishEventRequest {
+  string message = 1;
+}
+
+message PublishEventResponse {
+  bool success = 1;
+}

@@ -4,8 +4,10 @@ import (
 	"context"
 	"log"
 	"net/http"
-	"sampleServer/gen/go-grpc/api/eventv1connect"
-	eventv1 "sampleServer/gen/go/api"
+
+	eventv1 "github.com/tashinoki/logistic_app_tentative/proto/go/api"
+
+	"github.com/tashinoki/logistic_app_tentative/proto/go-grpc/api/eventv1connect"
 
 	connect "github.com/bufbuild/connect-go"
 	"github.com/go-chi/chi"
@@ -29,7 +31,7 @@ func main() {
 	mux := chi.NewRouter()
 
 	client := &client{}
-	path, handler := eventv1connect.NewEventServiceHandler(client)
+	path, handler := eventv1connect.NewEventReceiverServiceHandler(client)
 	log.Printf("Registering handler for path: %s", path)
 	mux.Mount(path, handler)
 

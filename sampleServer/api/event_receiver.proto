@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package event.v1;
+
+option go_package = "proto/go/api;eventv1";
+
+service EventReceiverService {
+  rpc ReceiveEvent (ReceiveEventRequest) returns (ReceiveEventResponse);
+}
+
+message ReceiveEventRequest {
+  string message = 1;
+}
+
+message ReceiveEventResponse {
+  bool success = 1;
+}
