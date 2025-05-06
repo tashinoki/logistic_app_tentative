@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-client
+  labels:
+    app: sample-client
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sample-client
+
+  template:
+    metadata:
+      labels:
+        app: sample-client
+    spec:
+      containers:
+        - name: sample-client
+          image: sample-client:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SERVER_ADDR
+              value: "http://sample-server-service:8000"

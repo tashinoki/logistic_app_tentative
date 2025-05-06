@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sample-client-service
+spec:
+  selector:
+    app: sample-client
+  ports:
+  - name: http-receiver # 任意のポート名
+    protocol: TCP
+    port: 8080
+    targetPort: 8080
+  type: ClusterIP

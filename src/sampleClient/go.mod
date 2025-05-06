@@ -2,7 +2,7 @@ module sampleClient
 
 go 1.23.5
 
-replace github.com/tashinoki/logistic_app_tentative/proto => ../proto
+replace github.com/tashinoki/logistic_app_tentative/proto => ../../proto
 
 require (
 	github.com/bufbuild/connect-go v1.10.0

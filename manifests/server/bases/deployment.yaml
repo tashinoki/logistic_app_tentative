@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-server
+  labels:
+    app: sample-server
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sample-server
+
+  template:
+    metadata:
+      labels:
+        app: sample-server
+    spec:
+      containers:
+        - name: sample-server
+          image: sample-server:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: GCP_PROJECT_ID
+              value: "hoge-hoge"
+            - name: GCP_PUBSUB_TOPIC_ID
+              value: "go-simple-api"
