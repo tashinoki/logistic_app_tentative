@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.6
 // 	protoc        (unknown)
-// source: api/event.proto
+// source: api/event_publisher.proto
 
 package eventv1
 
@@ -30,7 +30,7 @@ type PublishEventRequest struct {
 
 func (x *PublishEventRequest) Reset() {
 	*x = PublishEventRequest{}
-	mi := &file_api_event_proto_msgTypes[0]
+	mi := &file_api_event_publisher_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -42,7 +42,7 @@ func (x *PublishEventRequest) String() string {
 func (*PublishEventRequest) ProtoMessage() {}
 
 func (x *PublishEventRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_event_proto_msgTypes[0]
+	mi := &file_api_event_publisher_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -55,7 +55,7 @@ func (x *PublishEventRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PublishEventRequest.ProtoReflect.Descriptor instead.
 func (*PublishEventRequest) Descriptor() ([]byte, []int) {
-	return file_api_event_proto_rawDescGZIP(), []int{0}
+	return file_api_event_publisher_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *PublishEventRequest) GetMessage() string {
@@ -74,7 +74,7 @@ type PublishEventResponse struct {
 
 func (x *PublishEventResponse) Reset() {
 	*x = PublishEventResponse{}
-	mi := &file_api_event_proto_msgTypes[1]
+	mi := &file_api_event_publisher_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -86,7 +86,7 @@ func (x *PublishEventResponse) String() string {
 func (*PublishEventResponse) ProtoMessage() {}
 
 func (x *PublishEventResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_event_proto_msgTypes[1]
+	mi := &file_api_event_publisher_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -99,7 +99,7 @@ func (x *PublishEventResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PublishEventResponse.ProtoReflect.Descriptor instead.
 func (*PublishEventResponse) Descriptor() ([]byte, []int) {
-	return file_api_event_proto_rawDescGZIP(), []int{1}
+	return file_api_event_publisher_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *PublishEventResponse) GetSuccess() bool {
@@ -109,38 +109,38 @@ func (x *PublishEventResponse) GetSuccess() bool {
 	return false
 }
 
-var File_api_event_proto protoreflect.FileDescriptor
+var File_api_event_publisher_proto protoreflect.FileDescriptor
 
-const file_api_event_proto_rawDesc = "" +
+const file_api_event_publisher_proto_rawDesc = "" +
 	"\n" +
-	"\x0fapi/event.proto\x12\bevent.v1\"/\n" +
+	"\x19api/event_publisher.proto\x12\bevent.v1\"/\n" +
 	"\x13PublishEventRequest\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\"0\n" +
 	"\x14PublishEventResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess2]\n" +
-	"\fEventService\x12M\n" +
-	"\fPublishEvent\x12\x1d.event.v1.PublishEventRequest\x1a\x1e.event.v1.PublishEventResponseB7Z5github.com/yourusername/yourrepo/gen/event/v1;eventv1b\x06proto3"
+	"\asuccess\x18\x01 \x01(\bR\asuccess2f\n" +
+	"\x15EventPublisherService\x12M\n" +
+	"\fPublishEvent\x12\x1d.event.v1.PublishEventRequest\x1a\x1e.event.v1.PublishEventResponseB\x16Z\x14proto/go/api;eventv1b\x06proto3"
 
 var (
-	file_api_event_proto_rawDescOnce sync.Once
-	file_api_event_proto_rawDescData []byte
+	file_api_event_publisher_proto_rawDescOnce sync.Once
+	file_api_event_publisher_proto_rawDescData []byte
 )
 
-func file_api_event_proto_rawDescGZIP() []byte {
-	file_api_event_proto_rawDescOnce.Do(func() {
-		file_api_event_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_api_event_proto_rawDesc), len(file_api_event_proto_rawDesc)))
+func file_api_event_publisher_proto_rawDescGZIP() []byte {
+	file_api_event_publisher_proto_rawDescOnce.Do(func() {
+		file_api_event_publisher_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_api_event_publisher_proto_rawDesc), len(file_api_event_publisher_proto_rawDesc)))
 	})
-	return file_api_event_proto_rawDescData
+	return file_api_event_publisher_proto_rawDescData
 }
 
-var file_api_event_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
-var file_api_event_proto_goTypes = []any{
+var file_api_event_publisher_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_api_event_publisher_proto_goTypes = []any{
 	(*PublishEventRequest)(nil),  // 0: event.v1.PublishEventRequest
 	(*PublishEventResponse)(nil), // 1: event.v1.PublishEventResponse
 }
-var file_api_event_proto_depIdxs = []int32{
-	0, // 0: event.v1.EventService.PublishEvent:input_type -> event.v1.PublishEventRequest
-	1, // 1: event.v1.EventService.PublishEvent:output_type -> event.v1.PublishEventResponse
+var file_api_event_publisher_proto_depIdxs = []int32{
+	0, // 0: event.v1.EventPublisherService.PublishEvent:input_type -> event.v1.PublishEventRequest
+	1, // 1: event.v1.EventPublisherService.PublishEvent:output_type -> event.v1.PublishEventResponse
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -148,26 +148,26 @@ var file_api_event_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_api_event_proto_init() }
-func file_api_event_proto_init() {
-	if File_api_event_proto != nil {
+func init() { file_api_event_publisher_proto_init() }
+func file_api_event_publisher_proto_init() {
+	if File_api_event_publisher_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_event_proto_rawDesc), len(file_api_event_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_event_publisher_proto_rawDesc), len(file_api_event_publisher_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_api_event_proto_goTypes,
-		DependencyIndexes: file_api_event_proto_depIdxs,
-		MessageInfos:      file_api_event_proto_msgTypes,
+		GoTypes:           file_api_event_publisher_proto_goTypes,
+		DependencyIndexes: file_api_event_publisher_proto_depIdxs,
+		MessageInfos:      file_api_event_publisher_proto_msgTypes,
 	}.Build()
-	File_api_event_proto = out.File
-	file_api_event_proto_goTypes = nil
-	file_api_event_proto_depIdxs = nil
+	File_api_event_publisher_proto = out.File
+	file_api_event_publisher_proto_goTypes = nil
+	file_api_event_publisher_proto_depIdxs = nil
 }

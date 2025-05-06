@@ -2,9 +2,9 @@ syntax = "proto3";
 
 package event.v1;
 
-option go_package = "github.com/tashinoki/logistic_app_tentative/gen/event/v1;eventv1";
+option go_package = "proto/go/api;eventv1";
 
-service EventService {
+service EventReceiverService {
   rpc ReceiveEvent (ReceiveEventRequest) returns (ReceiveEventResponse);
 }
 

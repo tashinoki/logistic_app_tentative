@@ -2,9 +2,9 @@ syntax = "proto3";
 
 package event.v1;
 
-option go_package = "github.com/yourusername/yourrepo/gen/event/v1;eventv1";
+option go_package = "proto/go/api;eventv1";
 
-service EventService {
+service EventPublisherService {
   rpc PublishEvent (PublishEventRequest) returns (PublishEventResponse);
 }
 
