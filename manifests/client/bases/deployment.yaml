@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: sample-client
-          image: sample-client
+          image: sample-client:latest
           ports:
             - containerPort: 8080
           env:
