@@ -4,6 +4,7 @@ import (
 	"context"
 	"log"
 	"net/http"
+	"os"
 	"time"
 
 	connect "github.com/bufbuild/connect-go"
@@ -19,7 +20,12 @@ func (c *client) PublishEvent(
 	req *connect.Request[eventv1.PublishEventRequest],
 ) (*connect.Response[eventv1.PublishEventResponse], error) {
 
-	serverAddr := "http://localhost:8000"
+	serverAddr := os.Getenv("SERVER_ADDR")
+
+	if serverAddr == "" {
+		serverAddr = "http://localhost:8000"
+	}
+
 	client := eventv1connect.NewEventReceiverServiceClient(
 		&http.Client{
 			Transport: &http.Transport{},
