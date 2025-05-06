@@ -9,7 +9,7 @@ import (
 	errors "errors"
 	connect_go "github.com/bufbuild/connect-go"
 	http "net/http"
-	api "proto/go/api"
+	api "github.com/tashinoki/logistic_app_tentative/proto/go/api"
 	strings "strings"
 )
 

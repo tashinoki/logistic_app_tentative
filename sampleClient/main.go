@@ -4,14 +4,12 @@ import (
 	"context"
 	"log"
 	"net/http"
-	"sampleClient/gen/go-grpc/api/eventv1connect"
-	eventv1 "sampleClient/gen/go/api"
 	"time"
 
 	connect "github.com/bufbuild/connect-go"
 	"github.com/go-chi/chi"
-	serverEventv1connect "github.com/tashinoki/logistic_app_tentative/sampleServer/gen/go-grpc/api/eventv1connect"
-	serverEventv1 "github.com/tashinoki/logistic_app_tentative/sampleServer/gen/go/api"
+	"github.com/tashinoki/logistic_app_tentative/proto/go-grpc/api/eventv1connect"
+	eventv1 "github.com/tashinoki/logistic_app_tentative/proto/go/api"
 )
 
 type client struct{}
@@ -22,7 +20,7 @@ func (c *client) PublishEvent(
 ) (*connect.Response[eventv1.PublishEventResponse], error) {
 
 	serverAddr := "http://localhost:8000"
-	client := serverEventv1connect.NewEventServiceClient(
+	client := eventv1connect.NewEventReceiverServiceClient(
 		&http.Client{
 			Transport: &http.Transport{},
 			Timeout:   15 * time.Second,
@@ -32,7 +30,7 @@ func (c *client) PublishEvent(
 		// connect.WithGRPCWeb(), // gRPC-Web を使いたい場合はこちら
 	)
 
-	servReq := connect.NewRequest(&serverEventv1.ReceiveEventRequest{
+	servReq := connect.NewRequest(&eventv1.ReceiveEventRequest{
 		Message: "from client",
 	})
 	client.ReceiveEvent(ctx, servReq)
@@ -48,7 +46,7 @@ func main() {
 	mux := chi.NewRouter()
 
 	client := &client{}
-	path, handler := eventv1connect.NewEventServiceHandler(client)
+	path, handler := eventv1connect.NewEventPublisherServiceHandler(client)
 	log.Printf("Registering handler for path: %s", path)
 	mux.Mount(path, handler)
 
